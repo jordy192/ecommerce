@@ -16,6 +16,19 @@ class Product extends Model {
 		return $sql->select("SELECT * FROM tb_products ORDER BY desproduct");
 	}
 
+	public static function checkList($list)
+	{
+
+		foreach ($list as &$row) {
+			
+			$p = new Product();
+			$p->setData($row);
+			$row = $p->getValues();
+		}
+
+		return $list;
+	}
+
 	public function save()
 	{
 
@@ -86,11 +99,17 @@ class Product extends Model {
 
 	public function setPhoto($file)
 	{
+		if(empty($file['name']))
+		{
+			$this->checkPhoto();
+
+		} else {
 
 		$extension = explode('.', $file['name']);
 		$extension = end($extension);
 
-		switch ($extension) {
+		switch ($extension)
+		{
 			case "jpg":
 			case "jpeg":
 			$image = imagecreatefromjpeg($file["tmp_name"]);
@@ -110,13 +129,13 @@ class Product extends Model {
 			"img" . DIRECTORY_SEPARATOR . "products" . DIRECTORY_SEPARATOR . 
 			$this->getidproduct() . ".jpg";
 
-		imagejpeg($image, $dist);
+			imagejpeg($image, $dist);
 
-		imagedestroy($image);
+			imagedestroy($image);
 
-		$this->checkPhoto();
+			$this->checkPhoto();
+		}
 	}
-
 }
 
  ?>
