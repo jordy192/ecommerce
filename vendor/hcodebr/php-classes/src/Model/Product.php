@@ -128,11 +128,35 @@ class Product extends Model {
 			"img" . DIRECTORY_SEPARATOR . "products" . DIRECTORY_SEPARATOR . 
 			$this->getidproduct() . ".jpg";
 
-			imagejpeg($image, $dist);
+		imagejpeg($image, $dist);
 
-			imagedestroy($image);
+		imagedestroy($image);
 
-			$this->checkPhoto();
+		$this->checkPhoto();
+	}
+
+	public function getFromURL($desurl)
+	{
+
+		$sql = new Sql();
+
+		$rows = $sql->select("SELECT * FROM tb_products WHERE desurl = :desurl LIMIT 1", [
+			':desurl'=>$desurl
+		]);
+
+		$this->setData($rows[0]);
+	}
+
+	public function getCategories()
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("
+			SELECT * FROM tb_categories a INNER JOIN tb_productscategories b ON a.idcategory = b.idcategory WHERE b.idproduct = :idproduct
+		", [
+			':idproduct'=>$this->getidproduct()
+		]);
 	}
 }
 
