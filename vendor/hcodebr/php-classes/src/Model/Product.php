@@ -74,12 +74,16 @@ class Product extends Model {
 	public function checkPhoto()
 	{
 
-		if(file_exists($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 
-			"res" . DIRECTORY_SEPARATOR . "site" . DIRECTORY_SEPARATOR . 
-			"img" . DIRECTORY_SEPARATOR . "products" . DIRECTORY_SEPARATOR . 
-			$this->getidproduct() . ".jpg")) {
+		if(file_exists(
+			$_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . 
+			"res" . DIRECTORY_SEPARATOR . 
+			"site" . DIRECTORY_SEPARATOR . 
+			"img" . DIRECTORY_SEPARATOR . 
+			"products" . DIRECTORY_SEPARATOR . 
+			$this->getidproduct() . ".jpg"
+			)) {
 
-			$url = "/res/site/img/products" . $this->getidproduct() . ".jpg";
+			$url = "/res/site/img/products/" . $this->getidproduct() . ".jpg";
 		} else {
 
 			$url = "/res/site/img/product.jpg";
@@ -99,11 +103,6 @@ class Product extends Model {
 
 	public function setPhoto($file)
 	{
-		if(empty($file['name']))
-		{
-			$this->checkPhoto();
-
-		} else {
 
 		$extension = explode('.', $file['name']);
 		$extension = end($extension);
@@ -134,7 +133,6 @@ class Product extends Model {
 			imagedestroy($image);
 
 			$this->checkPhoto();
-		}
 	}
 }
 
