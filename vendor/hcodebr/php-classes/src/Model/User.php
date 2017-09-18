@@ -52,11 +52,12 @@ class User extends Model {
 
 		$sql = new Sql();
 
-		$results = $sql->select("SELECT * FROM tb_users WHERE deslogin = :LOGIN", array(
+		$results = $sql->select("SELECT * FROM tb_users a INNER JOIN tb_persons b ON a.idperson = b.idperson WHERE a.deslogin = :LOGIN", array(
 			":LOGIN"=>$login
 		));
 
-		if (count($results) === 0) {
+		if (count($results) === 0) 
+		{
 			throw new \Exception("Usuário inexistente ou senha inválida.");	
 		}
 
@@ -66,6 +67,8 @@ class User extends Model {
 		{
 
 			$user = new User();
+
+			$data['desperson'] = utf8_encode($data['desperson']);
 
 			$user->setData($data);
 
@@ -85,10 +88,13 @@ class User extends Model {
 	public static function verifyLogin($inadmin = true)
 	{
 
-		if (User::checkLogin($inadmin)) 
+		if (!User::checkLogin($inadmin)) 
 		{
-			
-			header("Location: /admin/login");
+			if ($inadmin) {
+				header("Location: /admin/login");
+			} else {
+				header("Location: /login");
+			}	
 			exit;
 		}
 	}
@@ -113,9 +119,9 @@ class User extends Model {
 		$sql = new Sql();
 
 		$results = $sql->select("CALL sp_users_save(:desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", array(
-			":desperson"=>$this->getdesperson(),
+			":desperson"=>utf8_encode($this->getdesperson()),
 			":deslogin"=>$this->getdeslogin(),
-			":despassword"=>$this->getdespassword(),
+			":despassword"=>$this->getdespasswordHash($this->getdespassword()),
 			":desemail"=>$this->getdesemail(),
 			":nrphone"=>$this->getnrphone(),
 			":inadmin"=>$this->getinadmin()
@@ -133,7 +139,11 @@ class User extends Model {
 			":iduser"=>$iduser
 		));
 
-		$this->setData($results[0]);
+		$data = $results[0];
+
+		$data['desperson'] = utf8_encode($data['desperson']);
+
+		$this->setData($data);
 	}
 
 	public function update()
@@ -143,9 +153,9 @@ class User extends Model {
 
 		$results = $sql->select("CALL sp_usersupdate_save(:iduser, :desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)", array(
 			":iduser"=>$this->getiduser(),
-			":desperson"=>$this->getdesperson(),
+			":desperson"=>utf8_encode($this->getdesperson()),
 			":deslogin"=>$this->getdeslogin(),
-			":despassword"=>$this->getdespassword(),
+			":despassword"=>$this->$this->getdespasswordHash($this->getdespassword()),
 			":desemail"=>$this->getdesemail(),
 			":nrphone"=>$this->getnrphone(),
 			":inadmin"=>$this->getinadmin()
@@ -165,7 +175,7 @@ class User extends Model {
 		));
 	}
 
-	public static function getForgot($email)
+	public static function getForgot($email, $inadmin = true)
 	{
 
 		$sql = new Sql();
@@ -206,7 +216,14 @@ class User extends Model {
 
 				$code = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_128, User::SECRET, $dataRecovery["idrecovery"], MCRYPT_MODE_ECB));
 
+				if ($inadmin === true) {
+
 				$link = "http://www.hcodecommerce.com.br/admin/forgot/reset?code=$code";
+
+				} else {
+
+					$link = "http://www.hcodecommerce.com.br/forgot/reset?code=$code";
+				}
 
 				$mailer = new Mailer($data["desemail"], $data["desperson"], "Redefinir Senha da Hcode Store", "forgot", array(
 					"name"=>$data["desperson"],
