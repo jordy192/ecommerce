@@ -323,7 +323,7 @@ class User extends Model {
 	public static function setErrorRegister($msg)
 	{
 
-		$_SESSION[User::ERROR] = $msg;
+		$_SESSION[User::ERROR_REGISTER] = $msg;
 	}
 
 	public static function getErrorRegister()
@@ -347,7 +347,7 @@ class User extends Model {
 
 		$sql = new Sql();
 
-		$results = $sql->select("SELECT FROM tb_users WHERE deslogin = :deslogin", [
+		$results = $sql->select("SELECT * FROM tb_users WHERE deslogin = :deslogin", [
 			':deslogin'=>$login
 		]);
 

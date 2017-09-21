@@ -3,7 +3,7 @@
 			<div class="block-slider block-slider4">
 				<ul class="" id="bxslider-home4">
 					<li>
-						<img src="/res/site/img/carro.png" alt="Slide">
+						<img src="/res/site/img/center-slider3.png" alt="Slide">
 						<div class="caption-group">
 							<h2 class="caption title">
 								Ração Premium <span class="primary"><strong>POROMOÇÃO</strong></span>
