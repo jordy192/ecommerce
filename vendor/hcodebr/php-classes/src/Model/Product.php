@@ -103,6 +103,9 @@ class Product extends Model {
 
 	public function setPhoto($file)
 	{
+		if(empty($file['name'])){
+			$this->checkPhoto();
+		}else{
 
 		$extension = explode('.', $file['name']);
 		$extension = end($extension);
@@ -133,6 +136,8 @@ class Product extends Model {
 		imagedestroy($image);
 
 		$this->checkPhoto();
+
+		}
 	}
 
 	public function getFromURL($desurl)

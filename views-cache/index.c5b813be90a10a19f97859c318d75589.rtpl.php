@@ -3,39 +3,48 @@
 			<div class="block-slider block-slider4">
 				<ul class="" id="bxslider-home4">
 					<li>
-						<img src="/res/site/img/center-slider3.png" alt="Slide">
+						<img src="/res/site/img/center-slider1.png" alt="Slide">
 						<div class="caption-group">
 							<h2 class="caption title">
-								Ração Premium <span class="primary"><strong>POROMOÇÃO</strong></span>
+								Yorkshire <span class="primary"><strong>FILHOTES</strong></span>
+							</h2>
+							<h4 class="caption subtitle">Confira !</h4>
+							<a class="caption button-radius" href="#"><span class="icon"></span>Conferir</a>
+						</div>
+					</li>
+					<li><img src="/res/site/img/center-slider6.png" alt="Slide">
+						<div class="caption-group">
+						  <h2 class="caption title">
+								Ração Purina <span class="primary">Dog Chow</span>
 							</h2>
 							<h4 class="caption subtitle">Filhotes</h4>
 							<a class="caption button-radius" href="#"><span class="icon"></span>Comprar</a>
 						</div>
 					</li>
-					<li><img src="/res/site/img/h4-slide2.png" alt="Slide">
+					<li><img src="/res/site/img/center-slider2.png" alt="Slide">
 						<div class="caption-group">
 							<h2 class="caption title">
-								by one, get one <span class="primary">50% <strong>off</strong></span>
+								Adoção <span class="primary">GATOS <strong>CACHORROS</strong></span>
 							</h2>
-							<h4 class="caption subtitle">school supplies & backpacks.*</h4>
+							<h4 class="caption subtitle">Não deixe de conferir !</h4>
+							<a class="caption button-radius" href="#"><span class="icon"></span>Conferir</a>
+						</div>
+					</li>
+					<li><img src="/res/site/img/center-slider4.png" alt="Slide">
+						<div class="caption-group">
+							<h2 class="caption title">
+								Ração <span class="primary">Purina <strong>CatShow</strong></span>
+							</h2>
+							<h4 class="caption subtitle">Castrados</h4>
 							<a class="caption button-radius" href="#"><span class="icon"></span>Comprar</a>
 						</div>
 					</li>
-					<li><img src="/res/site/img/h4-slide3.png" alt="Slide">
-						<div class="caption-group">
-							<h2 class="caption title">
-								Apple <span class="primary">Store <strong>Ipod</strong></span>
-							</h2>
-							<h4 class="caption subtitle">Select Item</h4>
-							<a class="caption button-radius" href="#"><span class="icon"></span>Comprar</a>
-						</div>
-					</li>
-					<li><img src="/res/site/img/h4-slide4.png" alt="Slide">
+					<li><img src="/res/site/img/center-slider5.png" alt="Slide">
 						<div class="caption-group">
 						  <h2 class="caption title">
-								Apple <span class="primary">Store <strong>Ipod</strong></span>
+								Ração <span class="primary">Premier <strong>Raças Específicas</strong></span>
 							</h2>
-							<h4 class="caption subtitle">& Phone</h4>
+							<h4 class="caption subtitle">Yorkshire</h4>
 							<a class="caption button-radius" href="#"><span class="icon"></span>Comprar</a>
 						</div>
 					</li>
