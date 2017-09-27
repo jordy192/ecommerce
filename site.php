@@ -232,7 +232,7 @@ $app->post("/checkout", function(){
 
 	$cart = Cart::getFromSession();
 
-	$totals = $cart->getCalculateTotal();
+	$cart->getCalculateTotal();
 
 	$order = new Order();
 
@@ -241,10 +241,13 @@ $app->post("/checkout", function(){
 		'idaddress'=>$address->getidaddress(),
 		'iduser'=>$user->getiduser(),
 		'idstatus'=>OrderStatus::EM_ABERTO,
-		'vltotal'=>$totals['vlprice'] + $cart->getvlfreight()
+		'vltotal'=>$cart->getvltotal()
 	]);
 
 	$order->save();
+
+	var_dump($order);
+	exit;
 
 	header("Location: /order/".$order->getidorder());
 	exit;
@@ -381,8 +384,7 @@ $app->post("/forgot/reset", function(){
 
 	$user->get((int)$forgot["iduser"]);
 
-	$password = password_hash($_POST["password"], PASSWORD_DEFAULT, ["cost"=>12
-	]);
+	$password = User::getPasswordHash($_POST["password"]);
 
 	$user->setPassword($password);
 
