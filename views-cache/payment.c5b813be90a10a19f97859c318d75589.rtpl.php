@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-12">
                 
-                <h1>Pagamento N° </h1>
+                <h1>Pagamento N° <?php echo htmlspecialchars( $order["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h1>
 
                 <button type="submit" id="btn-print" class="button alt" style="margin-bottom:10px">Imprimir</button>
 
