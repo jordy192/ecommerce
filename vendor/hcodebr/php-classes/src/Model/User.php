@@ -9,7 +9,7 @@ use \Hcode\Mailer;
 class User extends Model {
 
 	const SESSION = "User";
-	const SECRET = "HcodePhp7_Secret";
+	const SECRET = "PetSPPhp7_Secret";
 	const ERROR = "UserError";
 	const ERROR_REGISTER = "UserErrorRegister";
 	const SUCCESS = "UserSuccess";
@@ -223,14 +223,14 @@ class User extends Model {
 
 				if ($inadmin === true) {
 
-				$link = "http://www.hcodecommerce.com.br/admin/forgot/reset?code=$code";
+				$link = "http://www.ecommerce.com.br/admin/forgot/reset?code=$code";
 
 				} else {
 
-					$link = "http://www.hcodecommerce.com.br/forgot/reset?code=$code";
+					$link = "http://www.ecommerce.com.br/forgot/reset?code=$code";
 				}
 
-				$mailer = new Mailer($data["desemail"], $data["desperson"], "Redefinir Senha da Hcode Store", "forgot", array(
+				$mailer = new Mailer($data["desemail"], $data["desperson"], "Redefinir Senha do Ecommerce Pet Store", "forgot", array(
 					"name"=>$data["desperson"],
 					"link"=>$link
 				));

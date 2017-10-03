@@ -384,7 +384,7 @@
           <div class="content">
             <span class="brand">
               <a href="#">
-                Hcode Store
+                Ecommerce Pet
               </a>
             </span>
           </div>
