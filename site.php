@@ -526,9 +526,9 @@ $app->get("/boleto/:idorder", function($idorder){
 	// SEUS DADOS
 	$dadosboleto["identificacao"] = "Pets Hot";
 	$dadosboleto["cpf_cnpj"] = "00.000.000/0000-00";
-	$dadosboleto["endereco"] = "Rua teste teste, 000 - Bairro, 00000-000";
+	$dadosboleto["endereco"] = "Rua Estacio, 2017 - Nova America, 00000-000";
 	$dadosboleto["cidade_uf"] = "Rio de Janeiro - RJ";
-	$dadosboleto["cedente"] = "PETS HOTS ECOMMERCE - LTDA";
+	$dadosboleto["cedente"] = "PETS HOT ECOMMERCE - LTDA";
 
 	// NÃO ALTERAR!
 $path = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . "res" . DIRECTORY_SEPARATOR . "boletophp" . DIRECTORY_SEPARATOR . "include" . DIRECTORY_SEPARATOR;
