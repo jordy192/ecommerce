@@ -223,14 +223,14 @@ class User extends Model {
 
 				if ($inadmin === true) {
 
-				$link = "http://www.ecommerce.com.br/admin/forgot/reset?code=$code";
+				$link = "http://www.pets-hot.com.br/admin/forgot/reset?code=$code";
 
 				} else {
 
-					$link = "http://www.ecommerce.com.br/forgot/reset?code=$code";
+					$link = "http://www.pets-hot.com.br/forgot/reset?code=$code";
 				}
 
-				$mailer = new Mailer($data["desemail"], $data["desperson"], "Redefinir Senha do Ecommerce Pet Store", "forgot", array(
+				$mailer = new Mailer($data["desemail"], $data["desperson"], "Redefinir Senha da Pets Hot", "forgot", array(
 					"name"=>$data["desperson"],
 					"link"=>$link
 				));

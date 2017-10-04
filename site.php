@@ -524,11 +524,11 @@ $app->get("/boleto/:idorder", function($idorder){
 	$dadosboleto["carteira"] = "175";  // Código da Carteira: pode ser 175, 174, 104, 109, 178, ou 157
 
 	// SEUS DADOS
-	$dadosboleto["identificacao"] = "Pet Shop";
+	$dadosboleto["identificacao"] = "Pets Hot";
 	$dadosboleto["cpf_cnpj"] = "00.000.000/0000-00";
 	$dadosboleto["endereco"] = "Rua teste teste, 000 - Bairro, 00000-000";
 	$dadosboleto["cidade_uf"] = "Rio de Janeiro - RJ";
-	$dadosboleto["cedente"] = "PET SHOP ECOMMERCE - LTDA";
+	$dadosboleto["cedente"] = "PETS HOTS ECOMMERCE - LTDA";
 
 	// NÃO ALTERAR!
 $path = $_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . "res" . DIRECTORY_SEPARATOR . "boletophp" . DIRECTORY_SEPARATOR . "include" . DIRECTORY_SEPARATOR;
