@@ -261,7 +261,7 @@ class User extends Model {
 			    AND
 			    a.dtrecovery IS NULL
 			    AND
-			    DATE_ADD(a.dtregister, INTERVAL 1 HOUR) >= NOW();
+			    DATE_ADD(a.dtregister, INTERVAL 4 HOUR) >= NOW();
 		", array(
 			":idrecovery"=>$idrecovery
 		));
