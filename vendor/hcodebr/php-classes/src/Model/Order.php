@@ -76,7 +76,7 @@ class Order extends Model {
 			INNER JOIN tb_users d ON d.iduser = a.iduser 
 			INNER JOIN tb_addresses e USING(idaddress) 
 			INNER JOIN tb_persons f ON f.idperson = d.idperson 
-			WHERE a.dtregister DESC
+			ORDER BY a.dtregister DESC
 		");
 	}
 
