@@ -88,7 +88,7 @@ $app->get("/admin/orders", function(){
 	$page = new PageAdmin();
 
 	$page->setTpl("orders", [
-		'orders'=>Order::listAll();
+		'orders'=>Order::listAll()
 	]);
 });
 
