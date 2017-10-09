@@ -28,10 +28,10 @@
             <div class="col-sm-4 invoice-col">
             De
             <address>
-                <strong>Pets Hot</strong><br>
-                Rua Shopping Nova America, 2017 - Del Castilho<br>
+                <strong>Revitale Import</strong><br>
+                Avenida joão cabral de mello neto, 2017 - Barra da Tijuca<br>
                 Rio de Janeiro - RJ<br>
-                Telefone: (21) 2471-1065<br>
+                Telefone: (21) 4141-1065<br>
                 E-mail: jordylucas_1@hotmail.com
             </address>
             </div>
@@ -40,7 +40,7 @@
             Para
             <address>
                 <strong>{$order.desperson}</strong><br>
-                {$order.desaddress}, {$order.descomplement}<br>
+                {$order.desaddress},{$order.desnumber} {$order.descomplement}<br>
                 {$order.descity} - {$order.desstate}<br>
                 {if="$order.nrphone && $order.nrphone!='0'"}Telefone: {$order.nrphone}<br>{/if}
                 E-mail: {$order.desemail}
@@ -66,7 +66,7 @@
                     <th>Qtd</th>
                     <th>Produto</th>
                     <th>Código #</th>
-                    <th>Preço Unid.</th>
+                    <th>Preço Unidade</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -142,7 +142,7 @@
                 <button type="button" onclick="window.location.href = '/admin/orders/{$order.idorder}/status'" class="btn btn-default pull-left" style="margin-left: 5px;">
                     <i class="fa fa-pencil"></i> Editar Status
                 </button>
-                <button type="button" onclick="window.open('/boleto/{$order.idstatus}')" class="btn btn-default pull-left" style="margin-left: 5px;">
+                <button type="button" onclick="window.open('/boleto/{$order.idorder}')" class="btn btn-default pull-left" style="margin-left: 5px;">
                     <i class="fa fa-barcode"></i> Boleto
                 </button>
 

@@ -1,4 +1,3 @@
-
 <div class="product-big-title-area">
     <div class="container">
         <div class="row">
@@ -27,7 +26,7 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>N°</th>
                             <th>Valor Total</th>
                             <th>Status</th>
                             <th>Endereço</th>
@@ -40,7 +39,7 @@
                             <th scope="row">{$value.idorder}</th>
                             <td>R${function="formatPrice($value.vltotal)"}</td>
                             <td>{$value.desstatus}</td>
-                            <td>{$value.desaddress}, {$value.desdistrict}, {$value.descity} - , {$value.desstate} CEP: {$value.deszipcode}</td>
+                            <td>{$value.desaddress},{$value.desnumber}, {$value.desdistrict}, {$value.descity} - , {$value.desstate} CEP: {$value.deszipcode}</td>
                             <td style="width:222px;">
                                 <a class="btn btn-success" href="/order/{$value.idorder}" role="button">Imprimir Boleto</a>
                                 <a class="btn btn-default" href="/profile/orders/{$value.idorder}" role="button">Detalhes</a>
