@@ -192,6 +192,13 @@ $app->post("/checkout", function(){
 		exit;
 	}
 
+	if (!isset($_POST['desnumber']) || $_POST['desnumber'] === '') {
+		
+		Address::setMsgError("Informe o número.");
+		header('Location: /checkout');
+		exit;
+	}
+
 	if (!isset($_POST['desdistrict']) || $_POST['desdistrict'] === '') {
 		
 		Address::setMsgError("Informe o bairro.");
