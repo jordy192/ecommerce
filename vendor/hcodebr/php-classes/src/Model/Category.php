@@ -29,7 +29,6 @@ class Category extends Model {
 		$this->setData($results[0]);
 
 		Category::updateFile();
-		Category::updateFile2();
 	}
 
 	public function get($idcategory)
@@ -54,7 +53,6 @@ class Category extends Model {
 		]);
 
 		Category::updateFile();
-		Category::updateFile2();
 	}
 
 	public static function updateFile()
@@ -69,20 +67,6 @@ class Category extends Model {
 		}
 
 		file_put_contents($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . "views" . DIRECTORY_SEPARATOR . "categories-menu.html", implode('', $html));
-	}
-
-	public static function updateFile2()
-	{
-
-		$Categories = Category::listAll();
-
-		$html = [];
-
-		foreach ($Categories as $row) {
-			array_push($html, '<li><a href="/categories/' . $row['idcategory'] . '">' . $row['descategory'] . '</a></li>');
-		}
-
-		file_put_contents($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . "views" . DIRECTORY_SEPARATOR . "header.html", implode('', $html));
 	}
 
 	public function getProducts($related = true)
