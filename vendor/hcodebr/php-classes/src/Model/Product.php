@@ -34,7 +34,7 @@ class Product extends Model {
 
 		$sql = new Sql();
 
-		$results = $sql->select("CALL sp_products_save(:idproduct, :desproduct, :vlprice, :vlwidth, :vlheight, :vllength, :vlweight, :desurl)", array(
+		$results = $sql->select("CALL sp_products_save(:idproduct, :desproduct, :vlprice, :vlwidth, :vlheight, :vllength, :vlweight, :desurl, :descriptup, :descriptdown)", array(
 			":idproduct"=>$this->getidproduct(),
 			":desproduct"=>$this->getdesproduct(),
 			":vlprice"=>$this->getvlprice(),
@@ -42,7 +42,9 @@ class Product extends Model {
 			":vlheight"=>$this->getvlheight(),
 			":vllength"=>$this->getvllength(),
 			":vlweight"=>$this->getvlweight(),
-			":desurl"=>$this->getdesurl()
+			":desurl"=>$this->getdesurl(),
+			":descriptup"=>$this->getdescriptup(),
+			":descriptdown"=>$this->getdescriptdown()
 		));
 
 		$this->setData($results[0]);

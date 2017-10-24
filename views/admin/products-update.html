@@ -44,6 +44,17 @@
               <label for="vlweight">Peso</label>
               <input type="number" class="form-control" id="vlweight" name="vlweight" step="0.01" placeholder="0.00" value="{$product.vlweight}">
             </div>
+
+            <div class="form-group">
+              <label for="descriptup">Descrição Principal</label>
+              <textarea type="text" class="form-control" id="descriptup" rows="8"  name="descriptup" placeholder="Digite a descrição principal" value="{$product.descriptup}">{$product.descriptup}</textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="descriptdown">Descrição Secundária</label>
+              <textarea type="text" class="form-control"  id="descriptdown" rows="4" name="descriptdown" placeholder="Digite a descrição secundária" value="{$product.descriptdown}">{$product.descriptdown}</textarea>
+            </div>
+
             <div class="form-group">
               <label for="file">Foto</label>
               <input type="file" class="form-control" id="file" name="file" value="{$product.vlweight}">

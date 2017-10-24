@@ -1,5 +1,4 @@
 <?php
-
 use \Hcode\Page;
 use \Hcode\Model\Product;
 use \Hcode\Model\Category;
@@ -185,16 +184,16 @@ $app->post("/checkout", function(){
 		exit;
 	}
 
-	if (!isset($_POST['desaddress']) || $_POST['desaddress'] === '') {
+	if (!isset($_POST['desnumber']) || $_POST['desnumber'] === '') {
 		
-		Address::setMsgError("Informe o Endereço.");
+		Address::setMsgError("Informe o Número.");
 		header('Location: /checkout');
 		exit;
 	}
 
-	if (!isset($_POST['desnumber']) || $_POST['desnumber'] === '') {
+	if (!isset($_POST['desaddress']) || $_POST['desaddress'] === '') {
 		
-		Address::setMsgError("Informe o número.");
+		Address::setMsgError("Informe o Endereço.");
 		header('Location: /checkout');
 		exit;
 	}

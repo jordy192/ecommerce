@@ -23,6 +23,18 @@ function checkLogin($inadmin = true)
 
 }
 
+function paragraphUp($descriptup)
+{
+
+	return nl2br($descriptup);
+}
+
+function paragraphDown($descriptdown)
+{
+
+	return nl2br($descriptdown);
+}
+
 function getUserName()
 {
 
