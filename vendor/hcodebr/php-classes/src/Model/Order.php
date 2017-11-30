@@ -1,5 +1,5 @@
 <?php 
-
+//Classe Pedidos
 namespace Hcode\Model;
 
 use \Hcode\DB\Sql;
@@ -10,7 +10,7 @@ class Order extends Model {
 
 	const SUCCESS = "Order-Success";
 	const ERROR = "Order-Error";
-
+	//Salva um pedido no banco
 	public function save()
 	{
 
@@ -39,7 +39,7 @@ class Order extends Model {
 			$this->setData($results[0]);
 		}
 	}
-
+	//faz uma consulta no banco retornando um pedido
 	public function get($idorder)
 	{
 
@@ -62,7 +62,7 @@ class Order extends Model {
 			$this->setData($results[0]);
 		}
 	}
-
+	//lista todos os pedidos
 	public static function listAll()
 	{
 
@@ -79,7 +79,7 @@ class Order extends Model {
 			ORDER BY a.dtregister DESC
 		");
 	}
-
+	//deleta um pedido
 	public function delete()
 	{
 
@@ -89,7 +89,7 @@ class Order extends Model {
 			':idorder'=>$this->getidorder()
 		]);
 	}
-
+	//retorna um carrinho de um pedido
 	public function getCart():Cart
 	{
 
@@ -99,13 +99,13 @@ class Order extends Model {
 
 		return $cart;
 	}
-
+	//função definir mensagem de error do pedido
 	public static function setError($msg)
 	{
 
 		$_SESSION[Order::ERROR] = $msg;
 	}
-
+	//função pegar mensagem de error do pedido
 	public static function getError()
 	{
 
@@ -115,19 +115,19 @@ class Order extends Model {
 
 		return $msg;
 	}
-
+	//função limpa mensagens de error do pedido
 	public static function clearError()
 	{
 
 		$_SESSION[Order::ERROR] = NULL;
 	}
-
+	//função definir mensagem de sucesso do pedido
 	public static function setSuccess($msg)
 	{
 
 		$_SESSION[Order::SUCCESS] = $msg;
 	}
-
+	//função pegar mensagem de sucesso do pedido
 	public static function getSuccess()
 	{
 
@@ -137,13 +137,13 @@ class Order extends Model {
 
 		return $msg;
 	}
-
+	//função limpa mensagens de sucesso do pedido
 	public static function clearSuccess()
 	{
 
 		$_SESSION[Order::SUCCESS] = NULL;
 	}
-
+	//defini a quantidade de pedidos por pagina
 	public static function getPage($page = 1, $itemsPerPage = 10)
 	{
 		$start = ($page - 1) * $itemsPerPage;
@@ -172,7 +172,7 @@ class Order extends Model {
 		
 	}
 	
-
+	//retorna um pedido pela busca
 	public static function getPageSearch($search, $page = 1, $itemsPerPage = 10)
 	{
 		$start = ($page - 1) * $itemsPerPage;

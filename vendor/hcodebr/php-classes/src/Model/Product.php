@@ -1,5 +1,5 @@
 <?php 
-
+//classe de produtos
 namespace Hcode\Model;
 
 use \Hcode\DB\Sql;
@@ -7,7 +7,7 @@ use \Hcode\Model;
 use \Hcode\Mailer;
 
 class Product extends Model {
-
+	//lista todos os produtos do banco
 	public static function listAll()
 	{
 
@@ -15,7 +15,7 @@ class Product extends Model {
 
 		return $sql->select("SELECT * FROM tb_products ORDER BY desproduct");
 	}
-
+	
 	public static function checkList($list)
 	{
 

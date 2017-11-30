@@ -1,5 +1,5 @@
 <?php 
-
+// Classe do Carrinho de compras
 namespace Hcode\Model;
 
 use \Hcode\DB\Sql;
@@ -11,7 +11,7 @@ class Cart extends Model {
 
 	const SESSION = "Cart";
 	const SESSION_ERROR = "CartError";
-
+	//função que pega o carrinho do usuário da sessão
 	public static function getFromSession()
 	{
 
@@ -48,13 +48,13 @@ class Cart extends Model {
 
 		return $cart;
 	}
-
+	//função que defini os dados do carrinho da sessão atual
 	public function setToSession()
 	{
 
 		$_SESSION[Cart::SESSION] = $this->getValues();
 	}
-
+	//função que pega os dados do carrinho da sessão atual
 	public function getFromSessionID()
 	{
 
@@ -70,7 +70,7 @@ class Cart extends Model {
 
 		}
 	}
-
+	//função que pega o ID do carrinho
 	public function get(int $idcart)
 	{
 
@@ -86,7 +86,7 @@ class Cart extends Model {
 
 		}
 	}
-
+	//função salva o carrinho da sessão atual no banco
 	public function save()
 	{
 
@@ -103,7 +103,7 @@ class Cart extends Model {
 
 		$this->setData($results[0]);
 	}
-
+	//função que adiciona um produto no carrinho da sessão atual
 	public function addProduct(Product $product)
 	{
 
@@ -116,7 +116,7 @@ class Cart extends Model {
 
 		$this->getCalculateTotal();
 	}
-
+	//função que remove um produto do carrinho da sessão atual
 	public function removeProduct(Product $product, $all = false)
 	{
 
@@ -138,7 +138,7 @@ class Cart extends Model {
 
 		$this->getCalculateTotal();
 	}
-
+	//função que retorna a lista de produtos de um carrinho
 	public function getProducts()
 	{
 
@@ -157,7 +157,7 @@ class Cart extends Model {
 
 		return Product::checkList($rows);
 	}
-
+	//função que retorna um array com os valores dos produtos somados
 	public function getProductsTotals()
 	{
 
@@ -179,7 +179,7 @@ class Cart extends Model {
 			return [];
 		}
 	}
-
+	//função que faz o calculo do frete do total de produtos no carrinho
 	public function setFreight($nrzipcode)
 	{
 
@@ -236,19 +236,19 @@ class Cart extends Model {
 		}
 
 	}
-
+	//função que troca ponto por virgula nos valores
 	public static function formatValueToDecimal($value):float
 	{
 
 		$value = str_replace('.', '', $value);
 		return str_replace(',', '.', $value);
 	}
-
+	//função definir mensagem de error do carrinho
 	public static function setMsgError($msg)
 	{
 		$_SESSION[Cart::SESSION_ERROR] = $msg;
 	}
-
+	//função pegar mensagem de error do carrinho
 	public  static function getMsgError()
 	{
 
@@ -258,13 +258,13 @@ class Cart extends Model {
 
 		return $msg;
 	}
-
+	//função limpa mensagens de error do endereço
 	public static function clearMsgError()
 	{
 
 		$_SESSION[Cart::SESSION_ERROR] = NULL;
 	}
-
+	//função que atualiza o valor do frete
 	public function updateFreight()
 	{
 
@@ -273,7 +273,7 @@ class Cart extends Model {
 			$this->setFreight($this->getdeszipcode());
 		}
 	}
-
+	//função que pega o valor de cada produto no carrinho
 	public function getValues()
 	{
 
@@ -281,7 +281,7 @@ class Cart extends Model {
 
 		return parent::getValues();
 	}
-
+	//função que pega o valor de todos os produtos somados mais o frete
 	public function getCalculateTotal()
 	{
 

@@ -1,5 +1,5 @@
 <?php 
-
+//Classe de Endereço
 namespace Hcode\Model;
 
 use \Hcode\DB\Sql;
@@ -9,6 +9,7 @@ class Address extends Model {
 
 	const SESSION_ERROR = "AddressError";
 
+	//função que pega o cep do usuário da sessão e envia por API para receber o endereço completo
 	public static function getCEP($nrcep)
 	{
 
@@ -29,7 +30,7 @@ class Address extends Model {
 
 		return $data;
 	}
-
+	//função que carrega o endereço do cep do usuario da sessão
 	public function loadFromCEP($nrcep)
 	{
 
@@ -46,7 +47,7 @@ class Address extends Model {
 			$this->setdeszipcode($nrcep);
 		}
 	}
-
+	//função que salva o endereço do usuário da sessão no banco
 	public function save()
 	{
 
@@ -70,12 +71,12 @@ class Address extends Model {
 			$this->setData($results[0]);
 		}
 	}
-
+	//função definir mensagem de error do endereço
 	public static function setMsgError($msg)
 	{
 		$_SESSION[Address::SESSION_ERROR] = $msg;
 	}
-
+	//função pegar mensagem de error do endereço
 	public  static function getMsgError()
 	{
 
@@ -85,7 +86,7 @@ class Address extends Model {
 
 		return $msg;
 	}
-
+	//função limpa mensagens de error do endereço
 	public static function clearMsgError()
 	{
 

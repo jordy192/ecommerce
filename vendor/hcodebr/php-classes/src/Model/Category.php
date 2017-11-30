@@ -1,5 +1,5 @@
 <?php 
-
+//Classe da categoria dos produtos
 namespace Hcode\Model;
 
 use \Hcode\DB\Sql;
@@ -7,7 +7,7 @@ use \Hcode\Model;
 use \Hcode\Mailer;
 
 class Category extends Model {
-
+	//lista todas as categorias cadastradas no banco
 	public static function listAll()
 	{
 
@@ -15,7 +15,7 @@ class Category extends Model {
 
 		return $sql->select("SELECT * FROM tb_categories ORDER BY descategory");
 	}
-
+	//salva uma categoria no banco
 	public function save()
 	{
 
@@ -30,7 +30,7 @@ class Category extends Model {
 
 		Category::updateFile();
 	}
-
+	//pega um categoria pelo ID
 	public function get($idcategory)
 	{
 
@@ -42,7 +42,7 @@ class Category extends Model {
 
 		$this->setData($results[0]);
 	}
-
+	//deleta uma categoria do banco
 	public function delete()
 	{
 
@@ -54,7 +54,7 @@ class Category extends Model {
 
 		Category::updateFile();
 	}
-
+	//atualiza o arquivo de view das categorias
 	public static function updateFile()
 	{
 
@@ -68,7 +68,7 @@ class Category extends Model {
 
 		file_put_contents($_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR . "views" . DIRECTORY_SEPARATOR . "categories-menu.html", implode('', $html));
 	}
-
+	//retorna os produtos que estão em uma categoria
 	public function getProducts($related = true)
 	{
 
@@ -100,7 +100,7 @@ class Category extends Model {
 			]);
 		}
 	}
-
+	//paginação de produtos em uma categoria
 	public function getProductsPage($page = 1, $itemsPerPage = 8)
 	{
 		$start = ($page - 1) * $itemsPerPage;
@@ -127,7 +127,7 @@ class Category extends Model {
 		];
 		
 	}
-
+	//adiciona um produto a uma categoria
 	public function addProduct(Product $product)
 	{
 
@@ -138,7 +138,7 @@ class Category extends Model {
 			':idproduct'=>$product->getidproduct()
 		]);
 	}
-
+	//remove um produto de uma categoria
 	public function removeProduct(Product $product)
 	{
 
@@ -149,7 +149,7 @@ class Category extends Model {
 			':idproduct'=>$product->getidproduct()
 		]);
 	}
-
+	//defini a quantidade de categorias por pagina
 	public static function getPage($page = 1, $itemsPerPage = 10)
 	{
 		$start = ($page - 1) * $itemsPerPage;
@@ -173,7 +173,7 @@ class Category extends Model {
 		
 	}
 	
-
+	//retorna uma categoria pela busca
 	public static function getPageSearch($search, $page = 1, $itemsPerPage = 10)
 	{
 		$start = ($page - 1) * $itemsPerPage;
