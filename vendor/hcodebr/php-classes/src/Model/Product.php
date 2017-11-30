@@ -1,5 +1,5 @@
 <?php 
-//classe de produtos
+
 namespace Hcode\Model;
 
 use \Hcode\DB\Sql;
@@ -7,7 +7,7 @@ use \Hcode\Model;
 use \Hcode\Mailer;
 
 class Product extends Model {
-	//lista todos os produtos do banco
+
 	public static function listAll()
 	{
 
@@ -15,7 +15,7 @@ class Product extends Model {
 
 		return $sql->select("SELECT * FROM tb_products ORDER BY desproduct");
 	}
-	
+
 	public static function checkList($list)
 	{
 
@@ -215,6 +215,67 @@ class Product extends Model {
 		];
 		
 	}
+
+	public function getBestSellers()
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("
+		SELECT b.idproduct, b.desproduct, COUNT(*) AS nrqtd
+		FROM tb_cartsproducts a 
+		INNER JOIN tb_products b ON a.idproduct = b.idproduct 
+		GROUP BY b.idproduct
+		ORDER BY nrqtd desc");
+	}
+
+	public function getBestSellers1()
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("
+		SELECT b.idproduct, b.desproduct, COUNT(*) AS nrqtd
+		FROM tb_cartsproducts a 
+		INNER JOIN tb_products b ON a.idproduct = b.idproduct 
+		GROUP BY b.idproduct
+		ORDER BY nrqtd desc LIMIT 1");
+	}
+
+	public function getProductsCategory()
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("
+		SELECT d.descategory, b.desproduct, COUNT(*) AS nrqtd
+		FROM tb_cartsproducts a 
+		INNER JOIN tb_products b USING(idproduct)
+        INNER JOIN tb_productscategories c
+        ON b.idproduct = c.idproduct
+        INNER JOIN tb_categories d using (idcategory)
+        WHERE idcategory = d.idcategory
+		GROUP BY a.idproduct
+		ORDER BY idcategory, nrqtd desc");
+	}
+
+	public function getProductsCategory1()
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("
+		SELECT d.descategory, b.desproduct, COUNT(*) AS nrqtd
+		FROM tb_cartsproducts a 
+		INNER JOIN tb_products b USING(idproduct)
+        INNER JOIN tb_productscategories c
+        ON b.idproduct = c.idproduct
+        INNER JOIN tb_categories d using (idcategory)
+        WHERE idcategory = d.idcategory
+		GROUP BY a.idproduct
+		ORDER BY idcategory, nrqtd desc LIMIT 1");
+	}
+
 }
 
  ?>

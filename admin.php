@@ -2,6 +2,11 @@
 
 use \Hcode\PageAdmin;
 use \Hcode\Model\User;
+use \Hcode\Model\Category;
+use \Hcode\Model\Product;
+use \Hcode\Model\Order;
+use \Hcode\Model\Cart;
+
 
 $app->get('/admin', function() {
 
@@ -9,7 +14,17 @@ $app->get('/admin', function() {
 
 	$page = new PageAdmin();
 
-	$page->setTpl("index");
+	$report = new Product();
+	$category = new Product();
+	$count = new User();
+	$buyers = new User();
+
+	$page->setTpl("index", [
+		'report'=>$report->getBestSellers1(),
+		'count'=>$count->getClientsCount(),
+		'buyers'=>$buyers->getBestBuyers1(),
+		'category'=>$category->getProductsCategory1()
+	]);
 });
 
 $app->get('/admin/login', function() {

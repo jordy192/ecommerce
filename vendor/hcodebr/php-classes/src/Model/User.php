@@ -457,6 +457,62 @@ class User extends Model {
 		];
 		
 	}
+
+
+	public function getClients()
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("
+		SELECT a.iduser, b.desperson, b.desemail, b.nrphone
+		FROM tb_users a 
+		INNER JOIN tb_persons b 
+		ON a.idperson = b.idperson 
+		WHERE a.inadmin = 0");
+	}
+
+	public function getClientsCount()
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("
+		SELECT COUNT(*) AS nrqtd
+		FROM tb_users
+		WHERE inadmin = 0");
+	}
+
+	public function getBestBuyers()
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("
+		SELECT b.iduser, a.desperson, sum(c.vltotal) AS vltotal
+		FROM tb_persons a 
+		INNER JOIN tb_users b USING (idperson)
+		INNER JOIN tb_orders c
+		ON b.iduser = c.iduser 
+		GROUP BY b.iduser
+		ORDER BY sum(c.vltotal) desc");
+	}
+
+	public function getBestBuyers1()
+	{
+
+		$sql = new Sql();
+
+		return $sql->select("
+		SELECT b.iduser, a.desperson, sum(c.vltotal)
+		FROM tb_persons a 
+		INNER JOIN tb_users b USING (idperson)
+		INNER JOIN tb_orders c
+		ON b.iduser = c.iduser 
+		GROUP BY b.iduser
+		ORDER BY sum(c.vltotal) desc LIMIT 1");
+	}
+
 }
 
  ?>
