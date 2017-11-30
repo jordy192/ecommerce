@@ -253,8 +253,73 @@ $app->post("/checkout", function(){
 
 	$order->save();
 
-	header("Location: /order/".$order->getidorder());
+	switch ((int)$_POST['payment-method']) {
+
+		case 1:
+		header("Location: /order/".$order->getidorder()."/pagseguro");
+		break;
+
+		case 2:
+		header("Location: /order/".$order->getidorder()."/paypal");
+		break;
+
+		case 3:
+		header("Location: /order/".$order->getidorder());
+		break;
+	}
 	exit;
+});
+
+$app->get("/order/:idorder/pagseguro", function($idorder){
+
+	User::verifyLogin(false);
+
+	$order = new Order();
+
+	$order->get((int)$idorder);
+
+	$cart = $order->getCart();
+
+	$page = new Page([
+		'header'=>false,
+		'footer'=>false
+	]);
+
+	$page->setTpl("payment-pagseguro", [
+		'order'=>$order->getValues(),
+		'cart'=>$cart->getValues(),
+		'products'=>$cart->getProducts(),
+		'phone'=>[
+			'areaCode'=>substr($order->getnrphone(), 0, 2),
+			'number'=>substr($order->getnrphone(), 2, strlen($order->getnrphone()))
+		]
+	]);
+});
+
+$app->get("/order/:idorder/paypal", function($idorder){
+
+	User::verifyLogin(false);
+
+	$order = new Order();
+
+	$order->get((int)$idorder);
+
+	$cart = $order->getCart();
+
+	$page = new Page([
+
+		'header'=>false,
+		'footer'=>false
+	]);
+
+	$page->setTpl("payment-paypal", [
+
+		'order'=>$order->getValues(),
+
+		'cart'=>$cart->getValues(),
+
+		'products'=>$cart->getProducts()
+	]);
 });
 
 $app->get("/login", function(){
@@ -338,7 +403,7 @@ $app->post("/register", function(){
 
 	User::login($_POST['email'], $_POST['password']);
 
-	header('Location: /checkout');
+	header('Location: /');
 	exit;
 });
 
@@ -653,6 +718,60 @@ $app->post("/profile/change-password",function(){
 
 	User::logout();
 	exit;
+});
+
+$app->get("/warranty-and-refund", function(){
+
+	$page = new Page();
+
+	$page->setTpl("warranty-and-refund", [
+	]);
+
+});
+
+$app->get("/technical-assistance", function(){
+
+	$page = new Page();
+
+	$page->setTpl("technical-assistance", [
+	]);
+
+});
+
+$app->get("/freight", function(){
+
+	$page = new Page();
+
+	$page->setTpl("freight", [
+	]);
+
+});
+
+$app->get("/pay-fac", function(){
+
+	$page = new Page();
+
+	$page->setTpl("pay-fac", [
+	]);
+
+});
+
+$app->get("/security", function(){
+
+	$page = new Page();
+
+	$page->setTpl("security", [
+	]);
+
+});
+
+$app->get("/care", function(){
+
+	$page = new Page();
+
+	$page->setTpl("care", [
+	]);
+
 });
 
  ?>
